@@ -18,6 +18,8 @@ var regiao = ee.Geometry.Polygon(
           [lonmax, latmax],
           [lonmin, latmax]]]); 
 
+// folder for output
+var folder = 'teste';
 
 // determine centroid LONG and LAT
 var LONG= ee.Number(regiao.centroid().coordinates().get(0)).getInfo(); // Retrieves the value of this object from the server.
@@ -125,8 +127,6 @@ if (plot_chart) print('ndvi',ui.Chart.image.series(S2filtered.filter(ee.Filter.l
 /////////////////////////////////////////////////////////// export images to Google Drive
 if (save_to_drive)
 {
-  // folder for output
-  var folder = 'test-Theo';
   // determine spatial resolution from specific band
   var W = S2filtered.first().select('B8').projection().nominalScale().getInfo();
   print(W);
